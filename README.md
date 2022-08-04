@@ -17,7 +17,7 @@ Reports
 
 ## Project structure
 AndroidTest
-- - java
+- java
 -  -- app.com.mobileassignment.views 
 -   --- screens (package containing screen descriptions)
 -   --- tests (package contains tests)
