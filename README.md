@@ -25,4 +25,5 @@ Reports
    
 ## Run tests
 - The emulator must be configured (for example, Pixel 4 API 30)
-- In the Android Studio console, run the command './gradlew connectedCheck'
+- In the Android Studio console, run the command 
+-     './gradlew connectedCheck'
