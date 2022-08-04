@@ -16,7 +16,7 @@ Reports
 - Bag Report
 
 ## Project structure
-- --- Android test 
+- --- androidTest 
 -     --- java 
 -      --- app.com.mobileassignment.views 
 -        ---- screens (package containing screen descriptions)
