@@ -1,0 +1,95 @@
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+        google()
+
+    }
+    dependencies {
+        classpath 'org.gebish:geb-gradle:2.0'
+        classpath "io.qameta.allure:allure-gradle:2.8.1"
+    }
+}
+
+plugins {
+    id 'io.qameta.allure' version '2.10.0'
+}
+
+apply plugin: "io.qameta.allure"
+apply plugin: 'com.android.application'
+
+ext {
+    aspectjVersion = '1.9.5'
+}
+
+android {
+    compileSdkVersion 31
+
+    defaultConfig {
+        applicationId "app.com.mobileassignment"
+        minSdkVersion 19
+        targetSdkVersion 31
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    sourceSets {
+        test {
+            java.srcDirs += ["mobileassignment/views/tests"]
+            print(java.srcDirs)
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE.md'
+        exclude 'META-INF/LICENSE-notice.md'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.13.3'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.13.3'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.3'
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
+
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation('com.google.truth:truth:0.26') {
+        exclude group: 'junit'
+    }
+    testImplementation "org.mockito:mockito-core:3.3.3"
+    testImplementation "org.robolectric:robolectric:4.2.1"
+
+    testImplementation "io.qameta.allure:allure-gradle:2.8.1"
+
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0-alpha07'
+    androidTestImplementation 'androidx.test:runner:1.4.0'
+    androidTestImplementation 'androidx.test:rules:1.4.1-alpha07'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    implementation 'androidx.test.espresso:espresso-contrib:3.5.0-alpha07'
+    implementation 'io.qameta.allure:allure-java-commons:2.18.1'
+    testImplementation 'io.qameta.allure:allure-assertj:2.18.1'
+    testImplementation 'io.qameta.allure:allure-commandline:2.18.1'
+    testImplementation 'org.aspectj:aspectjweaver:1.9.6'
+    testImplementation 'io.qameta.allure:allure-junit4:2.12.1'
+}
+
+allure {
+    aspectjweaver = true
+    autoconfigure = true
+    version = '2.18.1'
+    clean = true
+    aspectjVersion = "${aspectjVersion}"
+    configuration = 'compile'
+}
