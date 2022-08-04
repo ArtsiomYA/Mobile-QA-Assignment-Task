@@ -16,12 +16,12 @@ Reports
 - Bag Report
 
 ## Project structure
-- -- AndroidTest
--     --- app.com.mobileassignment.views 
--     --- app.com.mobileassignment.views 
--       ---- screens (package containing screen descriptions)
--       ---- tests (package contains tests)
--       ---- unit (the package contains various test utilities)
+- --- Android test 
+-     --- java 
+-      --- app.com.mobileassignment.views 
+-        ---- screens (package containing screen descriptions)
+-        ---- tests (package contains tests)
+-        ---- unit (the package contains various test utilities)
    
 ## Run tests
 - The emulator must be configured (for example, Pixel 4 API 30)
