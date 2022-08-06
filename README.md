@@ -13,10 +13,10 @@ The repository contains automated tests for a simple native Android application 
 
 Reports
 - Test cases
-- Bag Report
+- Bug Report
 
 ## Project structure
--     --- adnroidTest  
+-     --- androidTest  
 -      --- java 
 -       --- app.com.mobileassignment.views 
 -         ---- screens (package containing screen descriptions)
