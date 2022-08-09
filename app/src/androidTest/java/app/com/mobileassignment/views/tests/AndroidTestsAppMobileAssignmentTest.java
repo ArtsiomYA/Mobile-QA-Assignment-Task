@@ -14,7 +14,6 @@ import app.com.mobileassignment.views.MainActivity;
 import app.com.mobileassignment.views.pageObjects.ActivityMainScreen;
 import app.com.mobileassignment.views.pageObjects.ActivityMapScreen;
 import app.com.mobileassignment.views.utils.TestData;
-import io.qameta.allure.Description;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
@@ -34,28 +33,24 @@ public class AndroidTestsAppMobileAssignmentTest {
     }
 
     @Test
-    @Description("Checking the display of the search field on the main screen")
-    public void testCheckDisplayedSearchFieldIsPresent() {
+    public void testCheckDisplayedSearchFieldOnMainScreen() {
         activityMainScreen.checkIsVisibleElementById(activityMainScreen.getSearchElement());
     }
 
     @Test
-    @Description("Checking the display of the list of cities on the main screen")
-    public void testCheckCitiesListElementIsPresent() {
+    public void testCheckDisplayCitiesListElementOnMainScreen() {
         activityMainScreen.checkIsVisibleElementById(activityMainScreen.getCitiesListElement());
     }
 
     @Test
-    @Description("Checking data entry in the search field on the main page")
-    public void testCheckInputCityInTheSearchField() {
+    public void testCheckInputCityInTheSearchFieldOnTheMainScreen() {
         activityMainScreen.checkIsVisibleElementById(activityMainScreen.getSearchElement());
         activityMainScreen.performText(activityMainScreen.getSearchElement(), TestData.getMinskCity());
         activityMainScreen.checkIsVisibleElementByText(TestData.getMinskCity());
     }
 
     @Test
-    @Description("Displaying search results on valid data on the main page")
-    public void testCheckDisplayInputDataInTheSearchFieldOnResult() {
+    public void testCheckDisplaySearchResultsWithValidDataOnMainScreen() {
         activityMainScreen.checkIsVisibleElementById(activityMainScreen.getSearchElement());
         activityMainScreen.performText(activityMainScreen.getSearchElement(), TestData.getHofkeCity());
         activityMainScreen.waiter(3000);
@@ -64,8 +59,7 @@ public class AndroidTestsAppMobileAssignmentTest {
     }
 
     @Test
-    @Description("Displaying search results on invalid data on the main page")
-    public void testCheckDisplayInputInvalidDataInTheSearchFieldOnResult() {
+    public void testCheckDisplaySearchResultsWithInvalidDataOnMainScreen() {
         activityMainScreen.checkIsVisibleElementById(activityMainScreen.getSearchElement());
         activityMainScreen.performText(activityMainScreen.getSearchElement(), TestData.getInvalidCity());
         activityMainScreen.waiter(2000);
@@ -73,8 +67,7 @@ public class AndroidTestsAppMobileAssignmentTest {
     }
 
     @Test
-    @Description("Checking the city selection from the list")
-    public void testCheckClickOnFoundCityInListOfCities() {
+    public void testCheckSelectCityFromSearchResult() {
         activityMainScreen.checkIsVisibleElementById(activityMainScreen.getSearchElement());
         activityMainScreen.performText(activityMainScreen.getSearchElement(), TestData.getMinskCity());
         activityMainScreen.waiter(3000);
@@ -85,8 +78,7 @@ public class AndroidTestsAppMobileAssignmentTest {
     }
 
     @Test
-    @Description("Checking invalid data entry in the search field on the main page")
-    public void checkInputInvalidDataInSearchField() {
+    public void testCheckInputInvalidDataInSearchField() {
         activityMainScreen.checkIsVisibleElementById(activityMainScreen.getSearchElement());
         activityMainScreen.performText(activityMainScreen.getSearchElement(), TestData.getInvalidCity());
         activityMainScreen.checkIsVisibleElementByText(TestData.getInvalidCity());
