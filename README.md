@@ -13,7 +13,8 @@ The repository contains automated tests for a simple native Android application 
 
 Reports
 - Test cases
-- Bug Report
+- Bug Reports
+- Report
 
 ## Project structure
 -     --- androidTest  
@@ -24,6 +25,15 @@ Reports
 -         ---- unit (the package contains various test utilities)
    
 ## Run tests
+Running through the console in the IDE or Android Studio
 - The emulator must be configured (for example, Pixel 4 API 30)
 - In the Android Studio console, run the command 
 -     './gradlew connectedCheck'
+Launching with Android Studio
+- Select a test class to run and press the "Run" button
+![img.png](img.png)
+
+## Reports
+Test results are stored in HTML format
+-     'app/build/reports/androidTests/connected/index.html'
+![img_1.png](img_1.png)
