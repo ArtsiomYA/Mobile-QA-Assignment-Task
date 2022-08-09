@@ -14,7 +14,7 @@ public class Delay {
     /**
      * Perform action of waiting for a specific time.
      */
-    public static ViewAction waitFor(final long millis) {
+    public ViewAction waitFor(final long millis) {
         return new ViewAction() {
             @Override
             public Matcher<View> getConstraints() {

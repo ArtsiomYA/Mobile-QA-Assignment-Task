@@ -4,7 +4,7 @@ import app.com.mobileassignment.R;
 
 public class ActivityMapScreen extends BaseScreen {
 
-    public static int getInsertPoint() {
+    public int getInsertPoint() {
         return R.id.insert_point;
     }
 
