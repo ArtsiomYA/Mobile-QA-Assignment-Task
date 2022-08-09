@@ -84,6 +84,12 @@ public class AndroidTestsAppMobileAssignmentTest {
         activityMainScreen.checkIsVisibleElementByText(TestData.getInvalidCity());
     }
 
+    @Test(expected = RuntimeException.class)
+    public void testCheckInputDataOnCyrillicSymbolInSearchField() {
+        activityMainScreen.checkIsVisibleElementById(activityMainScreen.getSearchElement());
+        activityMainScreen.performText(activityMainScreen.getSearchElement(), TestData.getVitebskCyrillicCity());
+    }
+
     @After
     public void destroy() {
         mActivityScenarioRule.getScenario().close();
