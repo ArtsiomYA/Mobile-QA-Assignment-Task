@@ -9,7 +9,7 @@ import androidx.test.espresso.ViewAction;
 
 import org.hamcrest.Matcher;
 
-public class Delay {
+public class Waiters {
 
     /**
      * Perform action of waiting for a specific time.
