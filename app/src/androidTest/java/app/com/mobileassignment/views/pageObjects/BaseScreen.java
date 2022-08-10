@@ -15,11 +15,13 @@ import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.not;
 
-import app.com.mobileassignment.views.utils.Delay;
+import androidx.test.espresso.ViewInteraction;
+
+import app.com.mobileassignment.views.utils.Waiters;
 
 public class BaseScreen {
 
-    private final Delay delay = new Delay();
+    private final Waiters waiters = new Waiters();
 
     public void checkIsVisibleElementById(Integer resourceId) {
         onView(allOf(withId(resourceId), isDisplayed()));
@@ -61,7 +63,7 @@ public class BaseScreen {
     }
 
     public void waiter(long millis) {
-        onView(isRoot()).perform(delay.waitFor(millis));
+        onView(isRoot()).perform(waiters.waitFor(millis));
     }
 
     public void clickOnCityInListOfCityByPosition(Integer resourceId, int position) {
