@@ -1,36 +1,16 @@
 package app.com.mobileassignment.views.tests;
 
-import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import app.com.mobileassignment.views.MainActivity;
-import app.com.mobileassignment.views.pageObjects.ActivityMainScreen;
-import app.com.mobileassignment.views.pageObjects.ActivityMapScreen;
 import app.com.mobileassignment.views.utils.TestData;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class AndroidTestsAppMobileAssignmentTest {
-
-    private ActivityMainScreen activityMainScreen;
-    private ActivityMapScreen activityMapScreen;
-
-    @Rule
-    public ActivityScenarioRule<MainActivity> mActivityScenarioRule =
-            new ActivityScenarioRule<>(MainActivity.class);
-
-    @Before
-    public void init() {
-        activityMainScreen = new ActivityMainScreen();
-        activityMapScreen = new ActivityMapScreen();
-    }
+public class AndroidTestsAppMobileAssignmentTest extends BaseTest {
 
     @Test
     public void testCheckDisplayedSearchFieldOnMainScreen() {
@@ -98,11 +78,6 @@ public class AndroidTestsAppMobileAssignmentTest {
     @Test
     public void checkTitleOnMainScreen() {
         activityMainScreen.checkIsVisibleElementByText(TestData.getTitleMainPage());
-    }
-
-    @After
-    public void destroy() {
-        mActivityScenarioRule.getScenario().close();
     }
 
 }
