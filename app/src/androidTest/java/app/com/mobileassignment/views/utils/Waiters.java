@@ -2,6 +2,7 @@ package app.com.mobileassignment.views.utils;
 
 import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 import android.view.View;
 
@@ -18,9 +19,9 @@ import java.util.concurrent.TimeoutException;
 public class Waiters {
 
     /**
-     * Perform action of waiting for a specific time.
+     * Perform action of waiting for a specific view by id or text.
      */
-    public ViewAction waitId(final int viewId, final long millis) {
+    public ViewAction waiter(Object typeView, final long millis) {
         return new ViewAction() {
             @Override
             public Matcher<View> getConstraints() {
@@ -29,18 +30,19 @@ public class Waiters {
 
             @Override
             public String getDescription() {
-                return  "wait for a specific view with id <" + viewId + "> during " + millis + " millis.";
+                return  "wait for a specific view with id or text <" + typeView + "> during " + millis + " millis.";
             }
 
             @Override
             public void perform(UiController uiController, final View view) {
                 final long startTime = System.currentTimeMillis();
                 final long endTime = startTime + millis - 500;
-                final Matcher<View> viewMatcher = withId(viewId);
+                final Matcher<View> viewMatcher = (typeView instanceof Integer) ? withId((Integer) typeView)
+                        : withText((String) typeView);
 
                 do {
                     for (View child : TreeIterables.breadthFirstViewTraversal(view)) {
-                        // found view with required ID
+                        // found view with required ID or TEXT
                         if (viewMatcher.matches(child)) {
                             return;
                         }
