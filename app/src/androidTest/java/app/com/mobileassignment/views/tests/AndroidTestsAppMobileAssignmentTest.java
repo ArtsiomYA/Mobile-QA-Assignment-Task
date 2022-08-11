@@ -2,7 +2,6 @@ package app.com.mobileassignment.views.tests;
 
 import static org.junit.Assert.assertThrows;
 
-import androidx.test.espresso.ViewInteraction;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 
@@ -28,34 +27,31 @@ public class AndroidTestsAppMobileAssignmentTest extends BaseTest {
     @Test
     public void testCheckInputCityInTheSearchFieldOnTheMainScreen() {
         activityMainScreen.checkIsVisibleElementById(activityMainScreen.getSearch());
-        activityMainScreen.performText(activityMainScreen.getSearch(), TestData.getMinskCity());
+        activityMainScreen.performText(activityMainScreen.getSearch(), TestData.getMinskCity(), 3000);
         activityMainScreen.checkIsVisibleElementByText(TestData.getMinskCity());
     }
 
     @Test
     public void testCheckDisplaySearchResultsWithValidDataOnMainScreen() {
         activityMainScreen.checkIsVisibleElementById(activityMainScreen.getSearch());
-        activityMainScreen.performText(activityMainScreen.getSearch(), TestData.getHofkeCity());
-        activityMainScreen.waiter(3000);
+        activityMainScreen.performText(activityMainScreen.getSearch(), TestData.getHofkeCity(), 3000);
         activityMainScreen.checkContainsStringInTheChild(activityMainScreen.getCitiesList(),
-                activityMainScreen.getCityName(), TestData.getHofkeCity(), 0);
+                activityMainScreen.getCityName(), TestData.getHofkeCity(), 0, 3000);
     }
 
     @Test
     public void testCheckDisplaySearchResultsWithInvalidDataOnMainScreen() {
         activityMainScreen.checkIsVisibleElementById(activityMainScreen.getSearch());
-        activityMainScreen.performText(activityMainScreen.getSearch(), TestData.getInvalidCity());
-        activityMainScreen.waiter(2000);
+        activityMainScreen.performText(activityMainScreen.getSearch(), TestData.getInvalidCity(), 3000);
         activityMainScreen.checkNotExistSearchCitiesInList(activityMainScreen.getCitiesList());
     }
 
     @Test
     public void testCheckSelectCityFromSearchResult() {
         activityMainScreen.checkIsVisibleElementById(activityMainScreen.getSearch());
-        activityMainScreen.performText(activityMainScreen.getSearch(), TestData.getMinskCity());
-        activityMainScreen.waiter(3000);
+        activityMainScreen.performText(activityMainScreen.getSearch(), TestData.getMinskCity(), 3000);
         activityMainScreen.clickOnCityInListOfCityByPosition(activityMainScreen
-                .getCitiesList(), 0);
+                .getCitiesList(), 0, 3000);
         activityMainScreen.checkIsNotVisibleElementById(activityMainScreen.getSearch());
         activityMapScreen.checkIsVisibleElementById(activityMapScreen.getInsertPoint());
     }
@@ -63,7 +59,7 @@ public class AndroidTestsAppMobileAssignmentTest extends BaseTest {
     @Test
     public void testCheckInputInvalidDataInSearchField() {
         activityMainScreen.checkIsVisibleElementById(activityMainScreen.getSearch());
-        activityMainScreen.performText(activityMainScreen.getSearch(), TestData.getInvalidCity());
+        activityMainScreen.performText(activityMainScreen.getSearch(), TestData.getInvalidCity(), 3000);
         activityMainScreen.checkIsVisibleElementByText(TestData.getInvalidCity());
     }
 
@@ -71,7 +67,7 @@ public class AndroidTestsAppMobileAssignmentTest extends BaseTest {
     public void testCheckInputDataOnCyrillicSymbolInSearchField() {
         activityMainScreen.checkIsVisibleElementById(activityMainScreen.getSearch());
         assertThrows(RuntimeException.class, () -> {
-            activityMainScreen.performText(activityMainScreen.getSearch(), TestData.getVitebskCyrillicCity());
+            activityMainScreen.performText(activityMainScreen.getSearch(), TestData.getVitebskCyrillicCity(), 3000);
         });
     }
 
