@@ -19,31 +19,35 @@ import app.com.mobileassignment.views.utils.Waiters;
 
 public class BaseScreen {
 
-    private final Waiters waiters = new Waiters();
+    private final Waiters waiter = new Waiters();
 
     public void checkIsVisibleElementById(Integer resourceId) {
+        onView(isRoot()).perform(waiter.waiter(resourceId, 3000));
         onView(allOf(withId(resourceId), isDisplayed()));
     }
 
     public void checkIsVisibleElementByText(String text) {
+        onView(isRoot()).perform(waiter.waiter(text, 3000));
         onView(allOf(withText(text), isDisplayed()));
     }
 
     public void checkIsNotVisibleElementById(Integer resourceId) {
-        onView(allOf(withText(resourceId), not(isDisplayed())));
+        onView(allOf(withId(resourceId), not(isDisplayed())));
     }
 
     public void checkIsNotVisibleElementByText(String text) {
         onView(allOf(withText(text), not(isDisplayed())));
     }
 
-    public void performText(Integer resourceId, String inputText) {
+    public void performText(Integer resourceId, String inputText, long millis) {
+        onView(isRoot()).perform(waiter.waiter(resourceId, millis));
         onView(withId(resourceId))
                 .perform(typeText(inputText), closeSoftKeyboard())
                 .check(matches(withText(inputText)));
     }
 
-    public void checkVisibleCitiesInList(Integer resourceId) {
+    public void checkVisibleCitiesInList(Integer resourceId, long millis) {
+        onView(isRoot()).perform(waiter.waiter(resourceId, millis));
         onView(withId(resourceId)).check(matches(isDisplayed()));
     }
 
@@ -53,18 +57,16 @@ public class BaseScreen {
 
     public void checkContainsStringInTheChild(Integer resourceCityList,
                                                      Integer resourceCityName,
-                                                     String text, int position) {
+                                                     String text, int position, long millis) {
+        onView(isRoot()).perform(waiter.waiter(resourceCityList, millis));
         onData(anything()).inAdapterView(withId(resourceCityList))
                 .atPosition(position)
                 .onChildView(withId(resourceCityName))
                 .check(matches(withText(containsString(text))));
     }
 
-    public void waiter(long millis) {
-        onView(isRoot()).perform(waiters.waitFor(millis));
-    }
-
-    public void clickOnCityInListOfCityByPosition(Integer resourceId, int position) {
+    public void clickOnCityInListOfCityByPosition(Integer resourceId, int position, long millis) {
+        onView(isRoot()).perform(waiter.waiter(resourceId, millis));
         onData(anything()).inAdapterView(withId(resourceId)).atPosition(position)
                 .perform(click());
     }
