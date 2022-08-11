@@ -15,8 +15,6 @@ import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.not;
 
-import androidx.test.espresso.ViewInteraction;
-
 import app.com.mobileassignment.views.utils.Waiters;
 
 public class BaseScreen {
