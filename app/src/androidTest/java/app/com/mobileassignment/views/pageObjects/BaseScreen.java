@@ -6,6 +6,7 @@ import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
@@ -14,6 +15,15 @@ import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.not;
+
+import android.view.View;
+import android.widget.TextView;
+
+import androidx.test.espresso.UiController;
+import androidx.test.espresso.ViewAction;
+import androidx.test.espresso.ViewInteraction;
+
+import org.hamcrest.Matcher;
 
 import app.com.mobileassignment.views.utils.Waiters;
 
@@ -58,6 +68,36 @@ public class BaseScreen {
         onView(isRoot()).perform(Waiters.waiter(resourceId, millis));
         onData(anything()).inAdapterView(withId(resourceId)).atPosition(position)
                 .perform(click());
+    }
+
+    public ViewInteraction getViewById(Integer resourceId) {
+        return onView(withId(resourceId));
+    }
+
+    public String getText(ViewInteraction matcher){
+        final String[] text = new String[1];
+        ViewAction va = new ViewAction() {
+
+            @Override
+            public Matcher<View> getConstraints() {
+                return isAssignableFrom(TextView.class);
+            }
+
+            @Override
+            public String getDescription(){
+                return "Text of the view";
+            }
+
+            @Override
+            public void perform(UiController uiController, View view) {
+                TextView tv = (TextView) view;
+                text[0] = tv.getText().toString();
+            }
+        };
+
+        matcher.perform(va);
+
+        return text[0];
     }
 
 }
