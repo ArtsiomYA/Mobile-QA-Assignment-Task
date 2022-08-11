@@ -1,5 +1,6 @@
 package app.com.mobileassignment.views.tests;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -29,6 +30,9 @@ public class AndroidTestsAppMobileAssignmentTest extends BaseTest {
         activityMainScreen.checkIsVisibleElementById(activityMainScreen.getSearch());
         activityMainScreen.performText(activityMainScreen.getSearch(), TestData.getMinskCity(), 3000);
         activityMainScreen.checkIsVisibleElementByText(TestData.getMinskCity());
+        assertEquals(TestData.getMinskCity(), activityMainScreen.getText(
+                activityMainScreen.getViewById(activityMainScreen.getSearch())));
+
     }
 
     @Test
@@ -49,7 +53,7 @@ public class AndroidTestsAppMobileAssignmentTest extends BaseTest {
     @Test
     public void testCheckSelectCityFromSearchResult() {
         activityMainScreen.checkIsVisibleElementById(activityMainScreen.getSearch());
-        activityMainScreen.performText(activityMainScreen.getSearch(), TestData.getMinskCity(), 3000);
+        activityMainScreen.performText(activityMainScreen.getSearch(), TestData.getKiewaPage(), 3000);
         activityMainScreen.clickOnCityInListOfCityByPosition(activityMainScreen
                 .getCitiesList(), 0, 3000);
         activityMainScreen.checkIsNotVisibleElementById(activityMainScreen.getSearch());
@@ -78,7 +82,7 @@ public class AndroidTestsAppMobileAssignmentTest extends BaseTest {
 
     @Test
     public void checkTitleOnMainScreen() {
-        activityMainScreen.checkIsVisibleElementByText(TestData.getTitleMainPage());
+        activityMainScreen.checkIsVisibleElementByText(TestData.getTitleMainScreen());
     }
 
 }
