@@ -21,7 +21,7 @@ public class Waiters {
     /**
      * Perform action of waiting for a specific view by id or text.
      */
-    public ViewAction waiter(Object typeView, final long millis) {
+    public static ViewAction waiter(Object typeView, final long millis) {
         return new ViewAction() {
             @Override
             public Matcher<View> getConstraints() {
@@ -36,7 +36,7 @@ public class Waiters {
             @Override
             public void perform(UiController uiController, final View view) {
                 final long startTime = System.currentTimeMillis();
-                final long endTime = startTime + millis - 500;
+                final long endTime = startTime + millis;
                 final Matcher<View> viewMatcher = (typeView instanceof Integer) ? withId((Integer) typeView)
                         : withText((String) typeView);
 
