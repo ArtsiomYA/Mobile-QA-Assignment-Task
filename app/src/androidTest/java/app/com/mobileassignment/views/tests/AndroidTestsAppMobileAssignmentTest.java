@@ -1,5 +1,8 @@
 package app.com.mobileassignment.views.tests;
 
+import static org.junit.Assert.assertThrows;
+
+import androidx.test.espresso.ViewInteraction;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 
@@ -64,10 +67,12 @@ public class AndroidTestsAppMobileAssignmentTest extends BaseTest {
         activityMainScreen.checkIsVisibleElementByText(TestData.getInvalidCity());
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test()
     public void testCheckInputDataOnCyrillicSymbolInSearchField() {
         activityMainScreen.checkIsVisibleElementById(activityMainScreen.getSearch());
-        activityMainScreen.performText(activityMainScreen.getSearch(), TestData.getVitebskCyrillicCity());
+        assertThrows(RuntimeException.class, () -> {
+            activityMainScreen.performText(activityMainScreen.getSearch(), TestData.getVitebskCyrillicCity());
+        });
     }
 
     @Test
