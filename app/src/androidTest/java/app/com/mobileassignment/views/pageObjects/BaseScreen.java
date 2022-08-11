@@ -35,20 +35,11 @@ public class BaseScreen {
         onView(allOf(withId(resourceId), not(isDisplayed())));
     }
 
-    public void checkIsNotVisibleElementByText(String text) {
-        onView(allOf(withText(text), not(isDisplayed())));
-    }
-
     public void performText(Integer resourceId, String inputText, long millis) {
         onView(isRoot()).perform(waiter.waiter(resourceId, millis));
         onView(withId(resourceId))
                 .perform(typeText(inputText), closeSoftKeyboard())
                 .check(matches(withText(inputText)));
-    }
-
-    public void checkVisibleCitiesInList(Integer resourceId, long millis) {
-        onView(isRoot()).perform(waiter.waiter(resourceId, millis));
-        onView(withId(resourceId)).check(matches(isDisplayed()));
     }
 
     public void checkNotExistSearchCitiesInList(Integer resourceId) {
