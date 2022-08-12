@@ -85,4 +85,12 @@ public class AndroidTestsAppMobileAssignmentTest extends BaseTest {
         activityMainScreen.checkIsVisibleElementByText(TestData.getTitleMainScreen());
     }
 
+    @Test
+    public void checkCountrySearch() {
+        activityMainScreen.checkIsVisibleElementById(activityMainScreen.getSearch());
+        activityMainScreen.performText(activityMainScreen.getSearch(),
+                TestData.getUnitedArabEmiratesCountry(), 3000);
+        activityMainScreen.checkNotExistSearchCitiesInList(activityMainScreen.getCitiesList());
+    }
+
 }

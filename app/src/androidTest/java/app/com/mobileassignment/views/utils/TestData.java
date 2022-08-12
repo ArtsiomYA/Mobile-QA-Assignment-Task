@@ -8,6 +8,7 @@ public class TestData {
     private static final String VITEBSK_CYRILLIC_CITY = "Витебск";
     private static final String TITLE_MAIN_SCREEN = "Mobile Assignment";
     private static final String KIEWA_PAGE = "kiewa";
+    private static final String UNITED_ARAB_EMIRATES_COUNTRY = "United Arab Emirates";
 
     public static String getMinskCity() {
         return MINSK_CITY;
@@ -32,5 +33,7 @@ public class TestData {
     public static String getKiewaPage() {
         return KIEWA_PAGE;
     }
+
+    public static String getUnitedArabEmiratesCountry() { return UNITED_ARAB_EMIRATES_COUNTRY; }
 
 }
