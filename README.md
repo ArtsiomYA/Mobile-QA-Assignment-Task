@@ -11,29 +11,37 @@ The repository contains automated tests for a simple native Android application 
 - Gradle
 - Emulator(Pixel 4 API 30)
 
-Reports
-- Test cases
-- Bug Reports
-- Report
-
 ## Project structure
--     --- androidTest  
--      --- java 
--       --- app.com.mobileassignment.views 
--         ---- screens (package containing screen descriptions)
--         ---- tests (package contains tests)
--         ---- unit (the package contains various test utilities)
+-      app/src/androidTest - Tests, test data, screens, test utilities
+-      app/build/reports/androidTest/connected/index.html - JUnit HTML Report
+-      Reports - Test cases, report, bug reports
    
-## Run tests
+## How to Run tests
+
+Preconditions:
+- Install Android Studio
+- Java version 11 must be installed
+- Clone this project locally
+- Create a virtual device (Tools ->  Device Manager -> Create Device -> Choose any device with mark Play Store and APi level > 30)
+- Before running the tests on the virtual device, you must start the application
+
+## Run UI tests
+
 Running through the console in the IDE or Android Studio
+Preconditions:
 - The emulator must be configured (for example, Pixel 4 API 30)
+- Run the application
 - In the Android Studio console, run the command 
 -     './gradlew connectedCheck'
+
 Launching with Android Studio
-- Select a test class to run and press the "Run" button
-![img.png](img.png)
+- You need to run the test class using the "Run" button
+Path to the test class: 'app/src/androidTest/java/views/tests/AndroidTestsAppMobileAssignmentTest'
 
 ## Reports
-Test results are stored in HTML format
--     'app/build/reports/androidTests/connected/index.html'
-![img_1.png](img_1.png)
+
+- In the root of the project in the Reports folder are stored: test cases, bug reports, report
+
+JUnit HTML Report
+It's located at the path: 'app/build/reports/androidTest/connected/index.html'
+To view the report you need to run 'Open in -> Browser' on the file index.html
