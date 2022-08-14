@@ -20,13 +20,13 @@ public class BaseTest {
             new ActivityScenarioRule<>(MainActivity.class);
 
     @Before
-    public void init() {
+    public void setUp() {
         activityMainScreen = new ActivityMainScreen();
         activityMapScreen = new ActivityMapScreen();
     }
 
     @After
-    public void destroy() {
+    public void tearDown() {
         mActivityScenarioRule.getScenario().close();
     }
 
