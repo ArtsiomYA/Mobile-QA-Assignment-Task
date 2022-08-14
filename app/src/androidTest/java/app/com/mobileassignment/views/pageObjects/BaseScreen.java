@@ -15,6 +15,7 @@ import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.not;
+import static org.junit.Assert.assertThrows;
 
 import android.view.View;
 import android.widget.TextView;
@@ -28,14 +29,15 @@ import org.hamcrest.Matcher;
 import app.com.mobileassignment.views.utils.Waiters;
 
 public class BaseScreen {
+    private final long DEFAULT_TIMEOUT = 5000;
 
     public void checkIsVisibleElementById(Integer resourceId) {
-        onView(isRoot()).perform(Waiters.waiter(resourceId, 3000));
+        onView(isRoot()).perform(Waiters.waiter(resourceId, DEFAULT_TIMEOUT));
         onView(allOf(withId(resourceId), isDisplayed()));
     }
 
     public void checkIsVisibleElementByText(String text) {
-        onView(isRoot()).perform(Waiters.waiter(text, 3000));
+        onView(isRoot()).perform(Waiters.waiter(text, DEFAULT_TIMEOUT));
         onView(allOf(withText(text), isDisplayed()));
     }
 
@@ -43,8 +45,9 @@ public class BaseScreen {
         onView(allOf(withId(resourceId), not(isDisplayed())));
     }
 
-    public void performText(Integer resourceId, String inputText, long millis) {
-        onView(isRoot()).perform(Waiters.waiter(resourceId, millis));
+    // вынести дефолтный таймаут
+    public void performText(Integer resourceId, String inputText) {
+        onView(isRoot()).perform(Waiters.waiter(resourceId, DEFAULT_TIMEOUT));
         onView(withId(resourceId))
                 .perform(typeText(inputText), closeSoftKeyboard())
                 .check(matches(withText(inputText)));
@@ -56,16 +59,29 @@ public class BaseScreen {
 
     public void checkContainsStringInTheChild(Integer resourceCityList,
                                                      Integer resourceCityName,
-                                                     String text, int position, long millis) {
-        onView(isRoot()).perform(Waiters.waiter(resourceCityList, millis));
+                                                     String text, int position) {
+        onView(isRoot()).perform(Waiters.waiter(resourceCityList, DEFAULT_TIMEOUT));
         onData(anything()).inAdapterView(withId(resourceCityList))
                 .atPosition(position)
                 .onChildView(withId(resourceCityName))
                 .check(matches(withText(containsString(text))));
     }
 
-    public void clickOnCityInListOfCityByPosition(Integer resourceId, int position, long millis) {
-        onView(isRoot()).perform(Waiters.waiter(resourceId, millis));
+    public boolean checkExceptionOccurrence(Integer resourceId, String data) {
+        String message = null;
+        try {
+            assertThrows(RuntimeException.class, () -> performText(resourceId, data));
+        } catch (Exception exception) {
+            message = exception.getMessage();
+        }
+
+        if (message == null) {
+            return true;
+        } return false;
+    }
+
+    public void clickOnCityInListOfCityByPosition(Integer resourceId, int position) {
+        onView(isRoot()).perform(Waiters.waiter(resourceId, DEFAULT_TIMEOUT));
         onData(anything()).inAdapterView(withId(resourceId)).atPosition(position)
                 .perform(click());
     }
