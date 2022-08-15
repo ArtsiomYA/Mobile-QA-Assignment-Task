@@ -45,7 +45,6 @@ public class BaseScreen {
         onView(allOf(withId(resourceId), not(isDisplayed())));
     }
 
-    // вынести дефолтный таймаут
     public void performText(Integer resourceId, String inputText) {
         onView(isRoot()).perform(Waiters.waiter(resourceId, DEFAULT_TIMEOUT));
         onView(withId(resourceId))
