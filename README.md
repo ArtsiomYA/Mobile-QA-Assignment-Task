@@ -28,6 +28,7 @@ Preconditions:
 ## Run UI tests
 
 Running through the console in the IDE or Android Studio
+
 Preconditions:
 - The emulator must be configured (for example, Pixel 4 API 30)
 - Run the application
@@ -41,7 +42,5 @@ Path to the test class: 'app/src/androidTest/java/views/tests/AndroidTestsAppMob
 ## Reports
 
 - In the root of the project in the Reports folder are stored: test cases, bug reports, report
-
-JUnit HTML Report
-It's located at the path: 'app/build/reports/androidTest/connected/index.html'
+- JUnit HTML Report's located at the path: 'app/build/reports/androidTest/connected/index.html'
 To view the report you need to run 'Open in -> Browser' on the file index.html
