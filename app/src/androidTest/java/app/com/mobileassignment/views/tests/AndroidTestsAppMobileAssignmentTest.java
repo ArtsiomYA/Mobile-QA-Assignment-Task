@@ -28,21 +28,24 @@ public class AndroidTestsAppMobileAssignmentTest extends BaseTest {
     @Test
     public void testCheckInputCityInTheSearchFieldOnTheMainScreen() {
         activityMainScreen.checkIsVisibleElementById(activityMainScreen.getSearch());
-        activityMainScreen.performText(activityMainScreen.getSearch(),
+        activityMainScreen.performText(
+                activityMainScreen.getSearch(),
                 ConfigProvider.readConfig().getString("testData.city.minsk"));
-        activityMainScreen.checkIsVisibleElementByText(ConfigProvider.readConfig()
-                .getString("testData.city.minsk"));
+        activityMainScreen.checkIsVisibleElementByText(
+                ConfigProvider.readConfig().getString("testData.city.minsk"));
         assertEquals(ConfigProvider.readConfig().getString("testData.city.minsk"),
-                activityMainScreen.getText(activityMainScreen
-                        .getViewById(activityMainScreen.getSearch())));
+                activityMainScreen.getText(activityMainScreen.getViewById(
+                        activityMainScreen.getSearch())));
     }
 
     @Test
     public void testCheckDisplaySearchResultsWithValidDataOnMainScreen() {
         activityMainScreen.checkIsVisibleElementById(activityMainScreen.getSearch());
-        activityMainScreen.performText(activityMainScreen.getSearch(),
+        activityMainScreen.performText(
+                activityMainScreen.getSearch(),
                 ConfigProvider.readConfig().getString("testData.city.hofke"));
-        activityMainScreen.checkContainsStringInTheChild(activityMainScreen.getCitiesList(),
+        activityMainScreen.checkContainsStringInTheChild(
+                activityMainScreen.getCitiesList(),
                 activityMainScreen.getCityName(),
                 ConfigProvider.readConfig().getString("testData.city.hofke"), 0);
     }
@@ -60,8 +63,8 @@ public class AndroidTestsAppMobileAssignmentTest extends BaseTest {
         activityMainScreen.checkIsVisibleElementById(activityMainScreen.getSearch());
         activityMainScreen.performText(activityMainScreen.getSearch(),
                 ConfigProvider.readConfig().getString("testData.city.kiewa"));
-        activityMainScreen.clickOnCityInListOfCityByPosition(activityMainScreen
-                .getCitiesList(), 0);
+        activityMainScreen.clickOnCityInListOfCityByPosition(
+                activityMainScreen.getCitiesList(), 0);
         activityMainScreen.checkIsNotVisibleElementById(activityMainScreen.getSearch());
         activityMapScreen.checkIsVisibleElementById(activityMapScreen.getInsertPoint());
     }
@@ -71,15 +74,16 @@ public class AndroidTestsAppMobileAssignmentTest extends BaseTest {
         activityMainScreen.checkIsVisibleElementById(activityMainScreen.getSearch());
         activityMainScreen.performText(activityMainScreen.getSearch(),
                 ConfigProvider.readConfig().getString("testData.city.invalidCity"));
-        activityMainScreen.checkIsVisibleElementByText(ConfigProvider.readConfig()
-                .getString("testData.city.invalidCity"));
+        activityMainScreen.checkIsVisibleElementByText(
+                ConfigProvider.readConfig().getString("testData.city.invalidCity"));
     }
 
     @Test()
     public void testCheckInputDataOnCyrillicSymbolInSearchField() {
         activityMainScreen.checkIsVisibleElementById(activityMainScreen.getSearch());
-        assertTrue(activityMainScreen.checkExceptionOccurrence(activityMainScreen.getSearch()
-        , ConfigProvider.readConfig().getString("testData.city.vitebskCyrillicCity")));
+        assertTrue(activityMainScreen.checkExceptionOccurrence(
+                activityMainScreen.getSearch(),
+                ConfigProvider.readConfig().getString("testData.city.vitebskCyrillicCity")));
     }
 
     @Test
@@ -89,16 +93,15 @@ public class AndroidTestsAppMobileAssignmentTest extends BaseTest {
 
     @Test
     public void checkTitleOnMainScreen() {
-        activityMainScreen.checkIsVisibleElementByText(ConfigProvider.readConfig()
-                .getString("testData.city.titleMainScreen"));
+        activityMainScreen.checkIsVisibleElementByText(
+                ConfigProvider.readConfig().getString("testData.city.titleMainScreen"));
     }
 
     @Test
     public void checkCountrySearch() {
         activityMainScreen.checkIsVisibleElementById(activityMainScreen.getSearch());
         activityMainScreen.performText(activityMainScreen.getSearch(),
-                ConfigProvider.readConfig()
-                        .getString("testData.city.unitedArabEmirates"));
+                ConfigProvider.readConfig().getString("testData.city.unitedArabEmirates"));
         activityMainScreen.checkNotExistSearchCitiesInList(activityMainScreen.getCitiesList());
     }
 

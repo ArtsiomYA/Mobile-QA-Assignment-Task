@@ -7,14 +7,6 @@ public class ActivityMainScreen extends BaseScreen {
 
     public int getSearch() { return R.id.search; }
 
-    public int getResultsSearch() {
-        return R.id.results;
-    }
-
-    public int getInputPoint() {
-        return R.id.insert_point;
-    }
-
     public int getCitiesList() {
         return R.id.citiesList;
     }

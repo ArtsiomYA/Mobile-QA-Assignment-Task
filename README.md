@@ -37,10 +37,10 @@ Preconditions:
 
 Launching with Android Studio
 - You need to run the test class using the "Run" button
-Path to the test class: 'app/src/androidTest/java/views/tests/AndroidTestsAppMobileAssignmentTest'
+Path to the test class: './app/src/androidTest/java/views/tests/AndroidTestsAppMobileAssignmentTest'
 
 ## Reports
 
 - In the root of the project in the Reports folder are stored: test cases, bug reports, report
-- JUnit HTML Report's located at the path: 'app/build/reports/androidTest/connected/index.html'
+- JUnit HTML Report's located at the path: './app/build/reports/androidTest/connected/index.html'
 To view the report you need to run 'Open in -> Browser' on the file index.html
