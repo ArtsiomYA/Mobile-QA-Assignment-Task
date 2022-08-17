@@ -105,4 +105,15 @@ public class AndroidTestsAppMobileAssignmentTest extends BaseTest {
         activityMainScreen.checkNotExistSearchCitiesInList(activityMainScreen.getCitiesList());
     }
 
+    @Test
+    public void checkPackageName() {
+        assertEquals(ConfigProvider.readConfig().getString("testData.city.packageName"),
+                appContext.getPackageName());
+    }
+
+    @Test
+    public void checkIfInternetOnDevice() {
+        assertTrue(activityMainScreen.netConnect(appContext));
+    }
+
 }

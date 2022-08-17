@@ -17,6 +17,9 @@ import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertThrows;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.view.View;
 import android.widget.TextView;
 
@@ -73,10 +76,7 @@ public class BaseScreen {
         } catch (Exception exception) {
             message = exception.getMessage();
         }
-
-        if (message == null) {
-            return true;
-        } return false;
+        return message == null;
     }
 
     public void clickOnCityInListOfCityByPosition(Integer resourceId, int position) {
@@ -113,6 +113,13 @@ public class BaseScreen {
         matcher.perform(va);
 
         return text[0];
+    }
+
+    public boolean netConnect(Context context) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(
+                Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null;
     }
 
 }
