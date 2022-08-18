@@ -26,6 +26,7 @@ import android.widget.TextView;
 import androidx.test.espresso.UiController;
 import androidx.test.espresso.ViewAction;
 import androidx.test.espresso.ViewInteraction;
+import androidx.test.uiautomator.UiDevice;
 
 import org.hamcrest.Matcher;
 
@@ -120,6 +121,24 @@ public class BaseScreen {
                 Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null;
+    }
+
+    public static void lockPhoneScreen(UiDevice device) {
+        try {
+            device.sleep();
+            device.waitForIdle(3000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void upLockPhoneScreen(UiDevice device) {
+        try {
+            device.wakeUp();
+            device.waitForIdle(3000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }
