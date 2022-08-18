@@ -9,6 +9,7 @@ import androidx.test.filters.LargeTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import app.com.mobileassignment.views.pageObjects.BaseScreen;
 import app.com.mobileassignment.views.utils.ConfigProvider;
 
 @LargeTest
@@ -114,6 +115,18 @@ public class AndroidTestsAppMobileAssignmentTest extends BaseTest {
     @Test
     public void checkIfInternetOnDevice() {
         assertTrue(activityMainScreen.netConnect(appContext));
+    }
+
+    @Test
+    public void checkTheAppAfterUnlock() {
+        activityMainScreen.checkIsVisibleElementById(activityMainScreen.getSearch());
+        activityMainScreen.performText(activityMainScreen.getSearch(),
+                ConfigProvider.readConfig().getString("testData.city.minsk"));
+        BaseScreen.lockPhoneScreen(device);
+        BaseScreen.upLockPhoneScreen(device);
+        assertEquals(ConfigProvider.readConfig().getString("testData.city.minsk"),
+                activityMainScreen.getText(activityMainScreen.getViewById(
+                        activityMainScreen.getSearch())));
     }
 
 }
