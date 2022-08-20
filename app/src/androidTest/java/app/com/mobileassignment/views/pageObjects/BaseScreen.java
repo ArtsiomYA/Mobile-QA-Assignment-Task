@@ -132,7 +132,7 @@ public class BaseScreen {
         }
     }
 
-    public static void upLockPhoneScreen(UiDevice device) {
+    public static void unLockPhoneScreen(UiDevice device) {
         try {
             device.wakeUp();
             device.waitForIdle(3000);
