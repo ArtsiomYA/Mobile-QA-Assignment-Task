@@ -107,12 +107,6 @@ public class AndroidTestsAppMobileAssignmentTest extends BaseTest {
     }
 
     @Test
-    public void checkPackageName() {
-        assertEquals(ConfigProvider.readConfig().getString("testData.city.packageName"),
-                appContext.getPackageName());
-    }
-
-    @Test
     public void checkTheAppAfterUnlock() {
         activityMainScreen.checkIsVisibleElementById(activityMainScreen.getSearch());
         activityMainScreen.performText(activityMainScreen.getSearch(),
